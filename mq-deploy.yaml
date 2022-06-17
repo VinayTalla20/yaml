@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+      name: mq-deploy
+      labels:
+           app: mq
+spec:
+    replicas: 3
+    selector:
+        matchLabels:
+              app: mq-pod
+    template:
+          metadata:
+               name: mq-pod
+               labels:
+                  app: mq-pod
+          spec:
+               containers:
+                    - name: mq-container
+                      image: ibmcom/mq
+                      env:
+                          - name: LICENSE
+                            value: accept
+
